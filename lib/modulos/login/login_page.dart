@@ -8,34 +8,39 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.colors.background,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-              'assets/images/logo.png',
-              width: 200,
-          ),
-          InputText(label: 'E-mail', hint: 'Digite seu e-mail'),
-          SizedBox(
-            height: 18,
-          ),
-          InputText(label: 'Senha', hint: 'Digite sua Senha'),
-          SizedBox(
-            height: 14,
-          ),
-          // ignore: prefer_const_constructors
-          Button(
-            label: 'Entrar', onPressed: () {  }, type: ButtonType.none,
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          Button(
-            label: 'Criar conta', onPressed: () {  }, type: ButtonType.outline,
-          ),
-          
-          
-        ],
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 12),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+                'assets/images/logo.png',
+                width: 200,
+            ),
+            InputText(label: 'E-mail', hint: 'Digite seu e-mail'),
+            SizedBox(
+              height: 18,
+            ),
+            InputText(label: 'Senha', hint: 'Digite sua Senha'),
+            SizedBox(
+              height: 14,
+            ),
+            // ignore: prefer_const_constructors
+            Button(
+              label: 'Entrar', onPressed: () { 
+              
+               }, type: ButtonType.fill,
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Button(
+              label: 'Criar conta', onPressed: () {  }, type: ButtonType.outline,
+            ),
+            
+            
+          ],
+        ),
       ),
     );
 
