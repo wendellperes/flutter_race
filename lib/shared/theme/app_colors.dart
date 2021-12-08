@@ -11,6 +11,9 @@ abstract class IAppColors {
   Color get textColor;
   Color get badColor;
   Color get border;
+  Color get title;
+  Color get subtitle;
+  Color get BackButton;
 }
 class AppColors implements IAppColors {
   @override
@@ -42,4 +45,12 @@ class AppColors implements IAppColors {
 
   @override
   Color get border => Color(0xFFE9E9EC);
+
+  @override
+  Color get subtitle => Color(0xFF949B9C);
+
+  @override
+  Color get title => Color(0xFF1E1F20);
+  @override
+  Color get BackButton => Color(0xFF000000);
 }
