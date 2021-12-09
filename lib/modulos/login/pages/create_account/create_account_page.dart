@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_race1/modulos/login/pages/create_account/create_account_controller.dart';
+import 'package:flutter_race1/modulos/login/repositories/login_repository_imp.dart';
+import 'package:flutter_race1/shared/services/app_database.dart';
 import 'package:flutter_race1/shared/theme/app_theme.dart';
 import 'package:flutter_race1/shared/widget/eleveted_button/eleveted_button.dart';
 import 'package:flutter_race1/shared/widget/input_text/input_text.dart';
@@ -13,14 +15,17 @@ class CreateAccountPage extends StatefulWidget {
 }
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
-  final controller = CreateAccountController();
+  late final CreateAccountController controller ;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
+    controller = CreateAccountController(
+      repository: LoginRepositoryImpl(database: AppDatabase.instance)
+    );
     controller.addListener(() {
        controller.state.when(
-         success: (value) => Navigator.pushNamed(context, "/home"),
+         success: (value) => Navigator.pop(context),
          error: (message, _) => scaffoldKey.currentState!.showBottomSheet((context) => 
         BottomSheet(
           onClosing: (){}, 

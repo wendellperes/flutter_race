@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_race1/modulos/login/pages/login/login_controller.dart';
+import 'package:flutter_race1/modulos/login/repositories/login_repository.dart';
+import 'package:flutter_race1/modulos/login/repositories/login_repository_imp.dart';
+import 'package:flutter_race1/shared/services/app_database.dart';
 import 'package:flutter_race1/shared/theme/app_theme.dart';
 import 'package:flutter_race1/shared/theme/app_text.dart';
 import 'package:flutter_race1/shared/widget/eleveted_button/eleveted_button.dart';
@@ -11,15 +14,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final controller = LoginController();
+  late final LoginController controller;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   void initState() {
     // TODO: implement initState
+
+    controller = LoginController(
+      repository: LoginRepositoryImpl(database: AppDatabase.instance)
+      );
+
     controller.addListener(() { 
       controller.state.when(
-        success: (value) => Navigator.pushNamed(context, "/home"),
+        success: (value) => Navigator.pushNamed(context, "/home" , arguments: value),
         
         error: (message, _) => scaffoldKey.currentState!.showBottomSheet((context) => 
         BottomSheet(

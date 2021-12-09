@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_race1/modulos/login/repositories/login_repository.dart';
+import 'package:flutter_race1/shared/models/user_model.dart';
+import 'package:flutter_race1/shared/services/app_database.dart';
 import 'package:flutter_race1/shared/utils/app_state.dart';
 
 class CreateAccountController extends ChangeNotifier{
+  final LoginRepository repository;
   AppState state = AppState.empty();
 
   final formkey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
   String _name = "";
+
+  CreateAccountController({
+    required this.repository
+  });
 
   void onChrange ({String? email, String? password, String? name}){
     _email = email ?? _email;
@@ -32,11 +40,15 @@ class CreateAccountController extends ChangeNotifier{
     if(validate()){
       try {
         update(AppState.loading());
-        await Future.delayed(Duration(seconds: 4));
-        update(AppState.success<String>("Deu Certo"));
+        final response = await repository.createAccount(
+          email: _email, 
+          name: _name, 
+          password: _password
+        );
+        update(AppState.success<UserModel>(response));
 
       } catch (e) {
-        update(AppState.error("Não foi possivel criar contar"));
+        update(AppState.error(e.toString()));
       }
     }
   }

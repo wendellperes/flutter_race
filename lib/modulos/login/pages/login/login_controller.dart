@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_race1/modulos/login/repositories/login_repository.dart';
+import 'package:flutter_race1/shared/models/user_model.dart';
+import 'package:flutter_race1/shared/services/app_database.dart';
 import 'package:flutter_race1/shared/utils/app_state.dart';
 
 class LoginController extends ChangeNotifier{
 
-    AppState state = AppState.empty();
+  final LoginRepository repository;
+
+  AppState state = AppState.empty();
 
   final formkey = GlobalKey<FormState>();
   String _email = '';
   String _password = '';
+
+  LoginController({
+    required this.repository
+  });
 
   void onChrange ({String? email, String? password}){
     _email = email ?? _email;
@@ -30,12 +39,12 @@ class LoginController extends ChangeNotifier{
     if(validate()){
       try {
         update(AppState.loading());
-        //chama back end
-        await Future.delayed(Duration(seconds: 4));
-        //update(AppState.error("Não foi possível realizar login"));
-        update(AppState.success<String>("Usuario logado"));
+        
+        final response = await repository.login(email: _email, password: _password);
+
+        update(AppState.success<UserModel>(response));
       } catch (e){
-        update(AppState.error("Não foi possível realizar login"));
+        update(AppState.error(e.toString()));
       }
     }
   }

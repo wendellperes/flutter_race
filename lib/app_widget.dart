@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_race1/shared/models/user_model.dart';
 
 import 'modulos/home/home_page.dart';
 import 'modulos/login/pages/login/login_page.dart';
@@ -20,7 +21,9 @@ class AppWidget extends StatelessWidget {
         "/splash": (context) => SplashPage(),
         "/login": (context) => LoginPage(),
         "/login/create-account": (context) => CreateAccountPage(),
-        "/home": (context) => HomePage()
+        "/home": (context) => HomePage(
+          // user: ModalRoute.of(context)!.settings.arguments as UserModel
+          )
       },
     );
   }
