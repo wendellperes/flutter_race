@@ -22,7 +22,7 @@ class AppWidget extends StatelessWidget {
         "/login": (context) => LoginPage(),
         "/login/create-account": (context) => CreateAccountPage(),
         "/home": (context) => HomePage(
-          // user: ModalRoute.of(context)!.settings.arguments as UserModel
+          user: ModalRoute.of(context)!.settings.arguments as UserModel
           )
       },
     );
