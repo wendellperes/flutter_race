@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:flutter_race1/shared/theme/app_text.dart';
 import 'package:flutter_race1/shared/theme/app_theme.dart';
 
@@ -6,6 +8,8 @@ class InputText extends StatefulWidget {
   final String label;
   final String hint;
   final String? Function(String)? validator;
+  final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? keyboardType;
   final Function(String)? onChanged;
   final bool obscure;
 
@@ -13,9 +17,11 @@ class InputText extends StatefulWidget {
     Key? key,
     required this.label,
     required this.hint,
-    this.obscure = false,
     this.validator,
+    this.inputFormatters,
     this.onChanged,
+    this.obscure = false, 
+    this.keyboardType,
   }) : super(key: key);
 
   @override
@@ -47,6 +53,8 @@ class _InputTextState extends State<InputText> {
             height: 12,
           ),
           TextFormField(
+            keyboardType: widget.keyboardType,
+            inputFormatters: widget.inputFormatters,
             style: AppTheme.textStyles.input,
             obscureText: widget.obscure,
             validator: (value) {

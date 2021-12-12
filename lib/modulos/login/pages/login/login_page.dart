@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
               InputText(
                 label: 'E-mail', 
                 hint: 'Digite seu e-mail',
-                validator: (value)=>isEmail(value) ? null : "Digite um e-mail válido!",
+                validator: (value)=> isEmail(value) ? null : "Digite um e-mail válido!",
                 onChanged: (value) => controller.onChrange(email: value),
               
               ),

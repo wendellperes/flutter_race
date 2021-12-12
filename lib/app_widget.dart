@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_race1/modulos/feed/feed-page.dart';
+import 'package:flutter_race1/modulos/profile/profile_page.dart';
 import 'package:flutter_race1/shared/models/user_model.dart';
 
 import 'modulos/home/home_page.dart';
@@ -22,6 +24,7 @@ class AppWidget extends StatelessWidget {
         "/login": (context) => LoginPage(),
         "/login/create-account": (context) => CreateAccountPage(),
         "/home": (context) => HomePage(
+          pages: [FeedPage(), ProfilePage()],
           user: ModalRoute.of(context)!.settings.arguments as UserModel
           )
       },

@@ -6,12 +6,14 @@ import 'app_theme.dart';
 abstract class IAppTextStyle {
   TextStyle get label;
   TextStyle get title;
+  TextStyle get titleListTile;
   TextStyle get subtitle;
   TextStyle get input;
   TextStyle get hint;
   TextStyle get buttonBackgroundColor;
   TextStyle get buttonBoldTextColor;
   TextStyle get buttonTextColor;
+  TextStyle get chart;
 }
 class AppTextStyle implements IAppTextStyle {
   @override
@@ -68,4 +70,16 @@ class AppTextStyle implements IAppTextStyle {
     color: AppTheme.colors.inputNormal,
     fontWeight: FontWeight.bold,
   );
+  @override
+  TextStyle get titleListTile => GoogleFonts.inter(
+        fontSize: 16,
+        color: AppTheme.colors.textColor,
+        fontWeight: FontWeight.w500,
+      );
+  @override
+  TextStyle get chart => GoogleFonts.inter(
+        fontSize: 14,
+        color: AppTheme.colors.textEnabled,
+        fontWeight: FontWeight.bold,
+      );
 }

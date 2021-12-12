@@ -31,16 +31,16 @@ class AppBottomNavigator extends StatelessWidget {
             IconButtomNavigator(
               icon: Icons.add,
               ontap: (){
-                onChanged(1);
+                onChanged(3);
               },
-              enabled: currentIndex == 1
+              enabled: false
             ),
             IconButtomNavigator(
               icon: Icons.settings,
               ontap: (){
-                onChanged(2);
+                onChanged(1);
               },
-              enabled: currentIndex == 2
+              enabled: currentIndex == 1
             ),
             
             
